@@ -1,0 +1,109 @@
+<mvc:View
+    controllerName="capdemonwproductworklistui.controller.Worklist"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.f.semantic"
+    >
+    	<Page title = "{i18n>ProductApplication}" titleAlignment="Center">
+
+		<content>
+       <Table
+                id="table"
+                width="auto"
+                items="{
+                    path: '/Products',
+                    sorter: {
+                        path: 'ProductID',
+                        descending: false
+                    }
+                }"
+                noDataText="{worklistView>/tableNoDataText}"
+                busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                growing="true"
+                growingScrollToLoad="true"
+                alternateRowColors="true"
+                Sticky="[{ColumnHeaders}, {HeaderToolbar}]"
+                updateFinished=".onUpdateFinished">
+
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title
+                            id="tableHeader"
+                            text="{worklistView>/worklistTableTitle}"
+                            level="H3"/>
+                        <ToolbarSpacer />
+                        <SearchField
+                            id="searchField"
+                            tooltip="{i18n>worklistSearchTooltip}"
+                            search=".onSearch">
+                            <layoutData>
+                                <OverflowToolbarLayoutData
+                                    maxWidth="200px"
+                                    priority="NeverOverflow"/>
+                            </layoutData>
+                        </SearchField>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column minScreenWidth="Phone" demandPopin="true" >
+                        <Text text="{i18n>tableNameColumnTitle}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+				       <Text text="{i18n>SupplierID}" />
+			         </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+				       <Text text="{i18n>CategoryID}" />
+			         </Column>
+                   	<Column minScreenWidth="Tablet" demandPopin="true">
+				       <Text text="{i18n>QuantityPerUnit}" />
+			         </Column>                 
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+				       <Text text="{i18n>UnitsInStock}" />
+			         </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+				       <Text text="{i18n>UnitsOnOrder}" />
+			        </Column>
+                      <Column minScreenWidth="Tablet" demandPopin="true">
+				       <Text text="{i18n>ReorderLevel}" />
+			        </Column>
+                      <Column minScreenWidth="Tablet" demandPopin="true"  hAlign="End">
+				       <Text text="{i18n>UnitPrice}" />
+			        </Column>
+                </columns>
+                <items>
+                    <ColumnListItem
+                        type="Navigation"
+                        press=".onPress">
+                        <cells>
+                            <ObjectIdentifier
+                                title="{ProductName}" text="{ProductID}"/>
+
+                         	<Link text="{SupplierID}" press="onSupplier"/>   
+
+                            <Link text="{CategoryID}" press="onCategory"/>   
+
+                            <Text text="{QuantityPerUnit}" />   
+
+                            <Text text="{UnitsInStock}" />
+
+                            <Text text="{UnitsOnOrder}" /> 
+
+                            <Text text="{ReorderLevel}" />
+
+                            <Text text="{UnitPrice} USD"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<!-- <Button text="Accept" type="Accept" /> -->
+				<Button text="{i18n>Download}" type="Accept" />
+				<!-- <Button text="Edit" />
+				<Button text="Delete" /> -->
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>
