@@ -28,8 +28,8 @@ sap.ui.define([
             // Model used to manipulate control states
             oViewModel = new JSONModel({
                 worklistTableTitle : this.getResourceBundle().getText("worklistTableTitle"),
-                shareSendEmailSubject: this.getResourceBundle().getText("shareSendEmailWorklistSubject"),
-                shareSendEmailMessage: this.getResourceBundle().getText("shareSendEmailWorklistMessage", [location.href]),
+                // shareSendEmailSubject: this.getResourceBundle().getText("shareSendEmailWorklistSubject"),
+                // shareSendEmailMessage: this.getResourceBundle().getText("shareSendEmailWorklistMessage", [location.href]),
                 tableNoDataText : this.getResourceBundle().getText("tableNoDataText")
             });
             this.setModel(oViewModel, "worklistView");
@@ -101,7 +101,6 @@ sap.ui.define([
                 }
                 this._applySearch(aTableSearchState);
             }
-
         },
 
         /**
@@ -125,7 +124,7 @@ sap.ui.define([
          */
         _showObject : function (oItem) {
             this.getRouter().navTo("object", {
-                objectId: oItem.getBindingContext().getPath().substring("/Products".length)
+                objectId: oItem.getBindingContext().getPath().substring("/Products".length)                      
             });
         },
 

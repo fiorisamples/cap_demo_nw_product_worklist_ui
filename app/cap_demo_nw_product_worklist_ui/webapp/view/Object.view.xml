@@ -2,29 +2,199 @@
     controllerName="capdemonwproductworklistui.controller.Object"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:semantic="sap.f.semantic">
+    xmlns:l="sap.ui.layout" 
+    xmlns:f="sap.ui.layout.form"
+  	xmlns:core="sap.ui.core"
+  >
 
-    <semantic:SemanticPage
-        id="page"
-        headerPinnable="false"
-        toggleHeaderOnTitleClick="false"
-        busy="{objectView>/busy}"
-        busyIndicatorDelay="{objectView>/delay}">
+	<Page title = "{objectView>/Products/ProductID} - {objectView>/Products/ProductName} " titleAlignment="Center" 
+     	showNavButton="true"   navButtonPress="onNavBack"> 
+ 	  <content>
+  	<VBox class="sapUiSmallMargin">
+		<f:Form id="FormDisplay480_Trial"
+			editable="false">
+			<f:title>
+				<core:Title text="Supplier Details : {objectView>/Supplier/SupplierID}" />
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="2"
+					columnsM="2"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="Address">
+					<f:formElements>
+						<f:FormElement label="Name">
+							<f:fields>
+								<Text text="{objectView>/Supplier/ContactName}"  />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="Designation">
+							<f:fields>
+								<Text text="{objectView>/Supplier/ContactTitle}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Street">
+							<f:fields>
+								<Text text="{objectView>/Supplier/Address} {objectView>/Supplier/Region}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="ZIP Code/City">
+							<f:fields>
+								<Text text="{objectView>/Supplier/PostalCode} {objectView>/Supplier/City}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Country">
+							<f:fields>
+								<Text text="{objectView>/Supplier/Country}" />
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title="Company Details">
+					<f:formElements>
+						<f:FormElement label="Company Name">
+							<f:fields>
+						   	<Text text="{objectView>/Supplier/CompanyName}" />
+							</f:fields>
+						</f:FormElement>
+						
+						<f:FormElement label="web">
+							<f:fields>
+                            	<Link text="Url" href="{objectView>/Supplier/HomePage}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Tel.">
+							<f:fields>
+								<Text text="{objectView>/Supplier/Phone}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Fax">
+							<f:fields>
+								<Text text="{objectView>/Supplier/Fax}" />
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>  
+      <!-- <l:VerticalLayout id="containerLayout" width="100%">
+				<l:BlockLayout id="BlockLayout">
+					<l:BlockLayoutRow accentCells="Accent1">
+						<l:BlockLayoutCell id="Accent1" width="1">
+							<VBox justifyContent="Center" alignItems="Center">
+								<Image id="idImage"  src="{objectView>/Image}"
+									width="100%"  >
+									<layoutData>
+										<FlexItemData growFactor="1"/>
+									</layoutData>
+								</Image>
+                                <Text text = "{objectView>/Category/Description}"/>
+							</VBox>
+						</l:BlockLayoutCell>
+	                     <l:BlockLayoutCell id="idTitle" width="1">
+                           <Title title ="{objectView>/Category/CategoryName}"/>
+                           <Text text="{objectView>/Category/CategoryID}"/>
+                           <Text text = "{objectView>/Category/Description}"/>
+                        </l:BlockLayoutCell>
+                        </l:BlockLayoutRow>
+                    </l:BlockLayout>
+			</l:VerticalLayout>  -->
 
-        <semantic:titleHeading>
-            <Title
-                text="{ProductName}"
-                level="H2"/>
-        </semantic:titleHeading>
+	<VBox class="sapUiSmallMargin">
+		<f:Form id="FormDisplay354"
+			editable="false">
+			<f:title>
+				<core:Title text="Category Details" />
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Category">
+							<f:fields>
+								<Text text="{objectView>/Category/CategoryID} - {objectView>/Category/CategoryName}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Category Description">
+							<f:fields>
+								<Text text="{objectView>/Category/Description}" />
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
 
-        <semantic:headerContent>
-            <ObjectNumber />
-        </semantic:headerContent>
 
-        <semantic:sendEmailAction>
-            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
-        </semantic:sendEmailAction>
-
-    </semantic:SemanticPage>
-
+ <Table id = "idOrderTable" mode="SingleSelectMaster" items = "{/Order_Details}" >
+    <headerToolbar>
+                    <OverflowToolbar>
+                        <Title
+                            text="Order Details"
+                            level="H3"/>
+                        <ToolbarSpacer />
+                        <!-- <SearchField
+                            id="searchField"
+                            tooltip="{i18n>worklistSearchTooltip}"
+                            search=".onSearch">
+                           
+                        </SearchField> -->
+                    </OverflowToolbar>
+                </headerToolbar>
+    <columns>
+       <Column hAlign="Center" minScreenWidth="Phone" popinDisplay="Inline">
+           <Text text = "{i18n>OrderID}"/> 
+       </Column>
+       <Column hAlign="Center" minScreenWidth="Phone" popinDisplay="Inline" >
+           <Text text = "{i18n>Quantity}"/>
+       </Column>
+       <Column hAlign="Left" minScreenWidth="Phone" popinDisplay="Inline" >
+           <Text text = "{i18n>Discount}"/>
+       </Column>
+        <Column hAlign="Center" minScreenWidth="Phone" popinDisplay="Inline" >
+           <Text text = "{i18n>UnitPrice}"/>
+       </Column>
+    </columns> 
+    <items>
+      <ColumnListItem>
+        <cells>
+          <ObjectIdentifier title="{OrderID}"></ObjectIdentifier>                
+            <Text text = "{Quantity}" ></Text>
+            <Text text = "{Discount}" ></Text>
+            <Text text = "{UnitPrice}  USD" ></Text>            
+        </cells>
+      </ColumnListItem>
+    </items>
+ </Table>
+     </content>
+    </Page>
 </mvc:View>

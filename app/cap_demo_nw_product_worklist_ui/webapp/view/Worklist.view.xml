@@ -21,7 +21,6 @@
                 busyIndicatorDelay="{worklistView>/tableBusyDelay}"
                 growing="true"
                 growingScrollToLoad="true"
-                alternateRowColors="true"
                 Sticky="[{ColumnHeaders}, {HeaderToolbar}]"
                 updateFinished=".onUpdateFinished">
 
@@ -57,13 +56,13 @@
                    	<Column minScreenWidth="Tablet" demandPopin="true">
 				       <Text text="{i18n>QuantityPerUnit}" />
 			         </Column>                 
-                    <Column minScreenWidth="Tablet" demandPopin="true">
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
 				       <Text text="{i18n>UnitsInStock}" />
 			         </Column>
-                    <Column minScreenWidth="Tablet" demandPopin="true">
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
 				       <Text text="{i18n>UnitsOnOrder}" />
 			        </Column>
-                      <Column minScreenWidth="Tablet" demandPopin="true">
+                      <Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
 				       <Text text="{i18n>ReorderLevel}" />
 			        </Column>
                       <Column minScreenWidth="Tablet" demandPopin="true"  hAlign="End">
@@ -84,13 +83,18 @@
 
                             <Text text="{QuantityPerUnit}" />   
 
-                            <Text text="{UnitsInStock}" />
+                
+                            	<ObjectNumber number= "{UnitsInStock}"
+                                              state = "{= ${UnitsInStock} > ${UnitsOnOrder}  ?  'Success' : 'Warning' }"/>
 
                             <Text text="{UnitsOnOrder}" /> 
 
                             <Text text="{ReorderLevel}" />
+                               <ObjectNumber number= "{UnitPrice}"
+                                              unit= "USD"
+                                              />
 
-                            <Text text="{UnitPrice} USD"/>
+                            <!-- <Text text="{UnitPrice} USD"/> -->
                         </cells>
                     </ColumnListItem>
                 </items>
